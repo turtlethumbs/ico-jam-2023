@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float difficultyIncreaseInterval = 30f;
     public float level = 0f;
     public float timer = 0f;
+    public HourGlass theHourGlass;
 
     void Start()
     {
@@ -21,11 +23,26 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
+        if (theHourGlass.isSelfDestructing)
+        {
+            GameOver();
+        }
     }
 
     void IncreaseDifficulty()
     {
         difficulty *= 1 + difficultyMultiplier;
         level = difficulty;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("GameScreen");
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOverScreen");
     }
 }
