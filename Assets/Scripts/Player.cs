@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     public float bulletSpawnYOffset = 0.8f;
     private Vector2 velocity;
     private Rigidbody2D myRigidbody;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -36,6 +38,12 @@ public class Player : MonoBehaviour
             velocity = Vector2.zero;
         }
 
+        // Reset the game
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+
+        }
+
         // Limit the max speed
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
     }
@@ -46,6 +54,7 @@ public class Player : MonoBehaviour
         if (bullet == null) return;
         bullet.transform.position = new Vector3(transform.position.x, transform.position.y + bulletSpawnYOffset, transform.position.z);
         bullet.SetActive(true);
+        audioSource.Play();
     }
 
     private void FixedUpdate()

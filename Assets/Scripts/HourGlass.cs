@@ -10,15 +10,17 @@ public class HourGlass : MonoBehaviour
     public float energyAddition = 10f;
     public float drainEnergyPerSecond = 1f;
     public string damagerTagName = "player_bullet";
+    public int timeUntilSelfDestruct;
     public float countDownTime = 3f;
+    public bool isCountingDown = false;
     public bool isSelfDestructing = false;
-
     private float angle = 0f;
     private float energy;
     private float selfDestructTimer = 0f;
     private GameManager gameManager;
 
     void Start() {
+        isCountingDown = false;
         energy = maxEnergy;
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -33,10 +35,17 @@ public class HourGlass : MonoBehaviour
         if (!isSelfDestructing)
         {
             if (energy <= 0)
+            {
+                isCountingDown = true;
                 selfDestructTimer += Time.deltaTime;
+            }
             else
+            {
                 selfDestructTimer = 0f;
-            if (countDownTime - selfDestructTimer <= 0)
+                timeUntilSelfDestruct = (int)countDownTime;
+            }
+            timeUntilSelfDestruct = Mathf.FloorToInt(countDownTime - selfDestructTimer);
+            if (timeUntilSelfDestruct <= 0)
                 SelfDestruct();
         }
     }
