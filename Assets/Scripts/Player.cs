@@ -19,25 +19,21 @@ public class Player : MonoBehaviour
     void Update()
     {
         // spawn player bullet on left-click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire1"))
         {
             shootBullet();
         }
 
-        // accelerate left
-        if (Input.GetKey(KeyCode.A))
+        int moveDirection = Mathf.FloorToInt(Input.GetAxisRaw("Horizontal"));
+        if (moveDirection == -1)
         {
             velocity = new Vector2(-maxAccel * Time.deltaTime, 0f);
         }
-
-        // accelerate right
-        else if (Input.GetKey(KeyCode.D))
+        else if (moveDirection == 1)
         {
             velocity = new Vector2(maxAccel * Time.deltaTime, 0f);
         }
-
-        else
-        {
+        else {
             velocity = Vector2.zero;
         }
 
