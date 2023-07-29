@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     public float maxAccel = 2000f;
     public float maxSpeed = 10f;
-    public GameObject bullet;
     public float bulletSpawnYOffset = 0.8f;
     private Vector2 velocity;
     private Rigidbody2D myRigidbody;
@@ -43,9 +42,10 @@ public class Player : MonoBehaviour
 
     private void shootBullet()
     {
-        GameObject newBullet = Instantiate(bullet);
-        newBullet.transform.parent = null;
-        newBullet.transform.position = new Vector3(transform.position.x, transform.position.y + bulletSpawnYOffset, transform.position.z);
+        GameObject bullet = BulletPool.SharedInstance.GetPooledObject();
+        if (bullet == null) return;
+        bullet.transform.position = new Vector3(transform.position.x, transform.position.y + bulletSpawnYOffset, transform.position.z);
+        bullet.SetActive(true);
     }
 
     private void FixedUpdate()

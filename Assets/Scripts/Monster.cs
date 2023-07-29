@@ -29,8 +29,9 @@ public class Monster : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
             gameManager.money += giveMoney;
+            health = maxHealth;
+            gameObject.SetActive(false);
         }
 
         // Update the movement direction based on player location

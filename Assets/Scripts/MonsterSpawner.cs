@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public Monster monster;
     public float minCooldown = 3f;
     public float maxCooldown = 5f;
     private float cooldown = 0f;
@@ -39,9 +38,9 @@ public class MonsterSpawner : MonoBehaviour
 
     void spawnMonster()
     {
-        Monster theMonster = Instantiate(monster);
-        theMonster.transform.parent = null;
+        GameObject monster = MonsterPool.SharedInstance.GetPooledObject();
         Vector2 spawnPosition = new Vector2(Random.Range(-spawnZoneDimensions.x/2, spawnZoneDimensions.x/2), transform.position.y);
-        theMonster.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, 0f);
+        monster.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, 0f);
+        monster.SetActive(true);
     }
 }
