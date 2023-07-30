@@ -38,12 +38,6 @@ public class Player : MonoBehaviour
             velocity = Vector2.zero;
         }
 
-        // Reset the game
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
-        }
-
         // Limit the max speed
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
     }

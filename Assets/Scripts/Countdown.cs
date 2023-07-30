@@ -14,16 +14,20 @@ public class Countdown : MonoBehaviour
 
     void Update()
     {
-        if (hourglass.isCountingDown)
+        if (hourglass.isSelfDestructing)
+        {
+            text.text = "";
+        }
+        else if (hourglass.isCountingDown)
             switch(hourglass.timeUntilSelfDestruct)
             {
-                case 2:
+                case 3:
                     text.text = "3...";
                     break;
-                case 1:
+                case 2:
                     text.text = "2..";
                     break;
-                case 0:
+                case 1:
                     text.text = "1.";
                     break;
                 default:

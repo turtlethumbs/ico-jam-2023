@@ -11,26 +11,37 @@ public class GameManager : MonoBehaviour
     public float difficultyIncreaseInterval = 30f;
     public float level = 0f;
     public float timer = 0f;
+    public Player thePlayer;
     public HourGlass theHourGlass;
     private AudioSource audioSource;
     private AudioDistortionFilter audioDistortionFilter;
     private bool hasBellRing1Sounded = false;
     private bool hasBellRing2Sounded = false;
     private bool hasBellRing3Sounded = false;
+    private float gameOverTimeOut = 3f;
+    
+    private VignetteController vignetteController;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         audioDistortionFilter = GetComponent<AudioDistortionFilter>();
+        vignetteController = GetComponent<VignetteController>();
         timer = 0f;
-        InvokeRepeating("IncreaseDifficulty", difficultyIncreaseInterval, difficultyIncreaseInterval);
         level = difficulty;
+        InvokeRepeating("IncreaseDifficulty", difficultyIncreaseInterval, difficultyIncreaseInterval);
     }
 
     void Update()
     {
         timer += Time.deltaTime;
 
+        if (!vignetteController.enabled && theHourGlass.isSelfDestructing)
+        {
+            thePlayer.enabled = false;
+            vignetteController.enabled = true;
+            Invoke("GameOver", gameOverTimeOut);
+        }
         if (!hasBellRing1Sounded && timer >= 30f)
         {
             audioDistortionFilter.distortionLevel = 0.5f;
@@ -48,11 +59,6 @@ public class GameManager : MonoBehaviour
             audioDistortionFilter.distortionLevel = 0.9f;
             PlayNextBellRingSound();
             hasBellRing3Sounded = true;
-        }
-
-        if (theHourGlass.isSelfDestructing)
-        {
-            GameOver();
         }
     }
 

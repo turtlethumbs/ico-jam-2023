@@ -44,7 +44,7 @@ public class HourGlass : MonoBehaviour
                 selfDestructTimer = 0f;
                 timeUntilSelfDestruct = (int)countDownTime;
             }
-            timeUntilSelfDestruct = Mathf.FloorToInt(countDownTime - selfDestructTimer);
+            timeUntilSelfDestruct = Mathf.CeilToInt(countDownTime - selfDestructTimer);
             if (timeUntilSelfDestruct <= 0)
                 SelfDestruct();
         }
