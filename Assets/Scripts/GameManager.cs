@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float timer = 0f;
     public Player thePlayer;
     public HourGlass theHourGlass;
+    public StoryDialog storyDialog;
     private AudioSource audioSource;
     private AudioDistortionFilter audioDistortionFilter;
     private bool hasBellRing1Sounded = false;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         timer = 0f;
         level = difficulty;
         InvokeRepeating("IncreaseDifficulty", difficultyIncreaseInterval, difficultyIncreaseInterval);
+        storyDialog.ShowDialog1();
     }
 
     void Update()
@@ -47,12 +49,14 @@ public class GameManager : MonoBehaviour
             audioDistortionFilter.distortionLevel = 0.5f;
             PlayNextBellRingSound();
             hasBellRing1Sounded = true;
+            storyDialog.ShowDialog2();
         }
         if (!hasBellRing2Sounded && timer >= 60f)
         {
             audioDistortionFilter.distortionLevel = 0.7f;
             PlayNextBellRingSound();
             hasBellRing2Sounded = true;
+            storyDialog.ShowDialog3();
         }
         if(!hasBellRing3Sounded && timer >= 90f)
         {
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
             theHourGlass.enabled = false;
             hasBellRing3Sounded = true;
             hasPlayerWon = true;
+            storyDialog.ShowDialog4();
             Invoke("PlayerWon", gameOverTimeOut);
         }
     }
