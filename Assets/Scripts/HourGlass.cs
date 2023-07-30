@@ -17,12 +17,10 @@ public class HourGlass : MonoBehaviour
     private float angle = 0f;
     private float energy;
     private float selfDestructTimer = 0f;
-    private GameManager gameManager;
 
     void Start() {
         isCountingDown = false;
         energy = maxEnergy;
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
