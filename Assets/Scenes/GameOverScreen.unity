@@ -796,7 +796,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 318005475}
         m_TargetAssemblyTypeName: SceneNavigator, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+        m_MethodName: GoToLevel1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

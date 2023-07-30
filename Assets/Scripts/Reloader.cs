@@ -12,11 +12,12 @@ public class Reloader : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.LoadScene("GameScreen");
+        SceneNavigator.GoToMainMenu();
     }
 
     void Update()
     {
+        // Cheat hotkey so the current scene can be reloaded
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

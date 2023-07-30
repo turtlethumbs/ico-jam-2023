@@ -5,22 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigator : MonoBehaviour
 {
-    void Start()
+    public static void GoToCredits()
     {
-        
+        SceneManager.LoadScene("Credits");
     }
 
-    void Update()
+    public static void GoToMainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void GoToMainMenu()
+    public static void GoToLevel1()
     {
         SceneManager.LoadScene("GameScreen");
     }
 
-    public void GoToGameOver()
+    public static void GoToGameOver()
     {
         SceneManager.LoadScene("GameOverScreen");
     }
