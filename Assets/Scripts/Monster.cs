@@ -16,6 +16,7 @@ public class Monster : MonoBehaviour
     private float velocity;
     private Rigidbody2D myRigidbody;
     private GameManager gameManager;
+    private DamageFlash damageFlash;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Monster : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         myRigidbody = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<GameManager>();
+        damageFlash = GetComponent<DamageFlash>();
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class Monster : MonoBehaviour
         {
             gameManager.money += giveMoney;
             health = maxHealth;
+            damageFlash.ResetFlash();
             gameObject.SetActive(false);
         }
 
@@ -73,6 +76,7 @@ public class Monster : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             health -= bullet.damage;
             health = Mathf.Clamp(health, 0, maxHealth);
+            damageFlash.TakeDamage();
         }
     }
 
