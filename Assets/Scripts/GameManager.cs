@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int money = 0;
     public float difficulty = 1f;
     public float difficultyMultiplier = 0.5f;
     public float difficultyIncreaseInterval = 30f;

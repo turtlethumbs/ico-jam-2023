@@ -15,24 +15,25 @@ public class Monster : MonoBehaviour
     private Player player;
     private float velocity;
     private Rigidbody2D myRigidbody;
-    private GameManager gameManager;
     private DamageFlash damageFlash;
 
-    void Start()
+    private void Start()
     {
-        health = maxHealth; // Reset the monster's health
-        player = FindAnyObjectByType<Player>();
+        player = FindObjectOfType<Player>();
+        if (player == null)
+        {
+            Debug.Log("Monster spawned but was unable to find the Player!");
+        }
         myRigidbody = GetComponent<Rigidbody2D>();
-        gameManager = FindObjectOfType<GameManager>();
         damageFlash = GetComponent<DamageFlash>();
+        ResetHealth();
     }
 
-    void Update()
+    private void Update()
     {
         if (health <= 0)
         {
-            gameManager.money += giveMoney;
-            health = maxHealth;
+            ResetHealth();
             damageFlash.ResetFlash();
             gameObject.SetActive(false);
         }
@@ -40,21 +41,10 @@ public class Monster : MonoBehaviour
         if (player == null) return;
 
         // Update the movement direction based on player location
-        if (transform.position.x < player.transform.position.x)
-        {
-            moveDirection = 1;
-        }
-        if (transform.position.x > player.transform.position.x)
-        {
-            moveDirection = -1;
-        }
+        moveDirection = (transform.position.x < player.transform.position.x) ? 1 : -1;
 
         // Go after the player
-        if (!isFalling)
-        {
-            velocity += (walkSpeed * Time.deltaTime) * moveDirection;
-        }
-        else velocity = 0;
+        velocity = (!isFalling) ? velocity + (walkSpeed * Time.deltaTime) * moveDirection : 0;        
     }
 
     private void FixedUpdate()
@@ -88,5 +78,10 @@ public class Monster : MonoBehaviour
         {
             isFalling = true;
         }
+    }
+
+    private void ResetHealth()
+    {
+        health = maxHealth;
     }
 }
