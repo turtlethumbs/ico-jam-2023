@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
             audioDistortionFilter.distortionLevel = 0.9f;
             PlayNextBellRingSound();
             vignetteController.enabled = true;
-            thePlayer.gameObject.SetActive(false);
+            thePlayer.enabled = false;
+            Rigidbody2D playerRB = thePlayer.GetComponent<Rigidbody2D>();
+            playerRB.velocity = Vector2.zero;
             theHourGlass.enabled = false;
             hasBellRing3Sounded = true;
             hasPlayerWon = true;

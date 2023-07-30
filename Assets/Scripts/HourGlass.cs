@@ -41,6 +41,7 @@ public class HourGlass : MonoBehaviour
             }
             else
             {
+                isCountingDown = false;
                 selfDestructTimer = 0f;
                 timeUntilSelfDestruct = (int)countDownTime;
             }
