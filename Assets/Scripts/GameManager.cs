@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private bool hasBellRing1Sounded = false;
     private bool hasBellRing2Sounded = false;
     private bool hasBellRing3Sounded = false;
+    private bool hasPlayerWon = false;
     private float gameOverTimeOut = 3f;
     
     private VignetteController vignetteController;
@@ -34,8 +35,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (hasPlayerWon) return;
         timer += Time.deltaTime;
-
         if (!vignetteController.enabled && theHourGlass.isSelfDestructing)
         {
             thePlayer.enabled = false;
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
             audioDistortionFilter.distortionLevel = 0.9f;
             PlayNextBellRingSound();
             hasBellRing3Sounded = true;
+            hasPlayerWon = true;
+            Invoke("PlayerWon", gameOverTimeOut);
         }
     }
 
@@ -76,6 +79,11 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("GameScreen");
+    }
+
+    public void PlayerWon()
+    {
+        SceneManager.LoadScene("Credits");
     }
 
     public void GameOver()

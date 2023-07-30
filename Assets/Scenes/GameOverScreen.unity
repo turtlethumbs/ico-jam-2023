@@ -1146,7 +1146,7 @@ MonoBehaviour:
   postProcessVolume: {fileID: 303141783}
   minIntensityValue: 0
   maxIntensityValue: 1
-  lerpDuration: 1
+  lerpDuration: 2
   reverse: 1
 --- !u!4 &913417753
 Transform:
