@@ -69,4 +69,11 @@ public class StoryDialog : MonoBehaviour
         isShowingDialog = true;
         lerpTimer = timer = 0f;
     }
+
+    public void ShowDialogLose()
+    {
+        text.text = "You'll never escape!";
+        isShowingDialog = true;
+        lerpTimer = timer = 0f;
+    }
 }

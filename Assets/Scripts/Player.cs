@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // spawn player bullet on left-click
-        if (Input.GetButtonDown("Fire1"))
+        // spawn player bullet on left-click or pressing spacebar
+        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
             shootBullet();
         }

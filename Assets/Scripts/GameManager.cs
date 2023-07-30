@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
             thePlayer.enabled = false;
             vignetteController.enabled = true;
             Invoke("GameOver", gameOverTimeOut);
+            storyDialog.ShowDialogLose();
+            return;
         }
         if (!hasBellRing1Sounded && timer >= 30f)
         {
