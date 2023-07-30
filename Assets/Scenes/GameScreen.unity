@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   difficulty: 1
-  difficultyMultiplier: 0.25
+  difficultyMultiplier: 0.2
   difficultyIncreaseInterval: 10
   level: 0
   timer: 0
@@ -1366,6 +1366,7 @@ MonoBehaviour:
   minIntensityValue: 0
   maxIntensityValue: 1
   lerpDuration: 2
+  reverse: 0
 --- !u!1 &1026365056
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,8 @@ public class Monster : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+        if (player == null) return;
+
         // Update the movement direction based on player location
         if (transform.position.x < player.transform.position.x)
         {

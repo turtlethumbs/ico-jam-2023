@@ -16,14 +16,7 @@ public class CreditsScroller : MonoBehaviour
         StartScrolling();
     }
 
-    private void Update()
-    {
-        // Enable the player to navigate out of Credits Screen
-        if (Input.GetButtonDown("Fire1"))
-        {
-            SceneNavigator.GoToMainMenu();
-        }
-    }
+    private void Update() {}
 
     public void StartScrolling()
     {

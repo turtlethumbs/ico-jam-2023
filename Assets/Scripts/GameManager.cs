@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
         {
             audioDistortionFilter.distortionLevel = 0.9f;
             PlayNextBellRingSound();
+            vignetteController.enabled = true;
+            thePlayer.gameObject.SetActive(false);
+            theHourGlass.enabled = false;
             hasBellRing3Sounded = true;
             hasPlayerWon = true;
             Invoke("PlayerWon", gameOverTimeOut);
