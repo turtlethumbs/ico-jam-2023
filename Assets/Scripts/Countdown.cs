@@ -23,13 +23,13 @@ public class Countdown : MonoBehaviour
             switch(hourglass.timeUntilSelfDestruct)
             {
                 case 3:
-                    text.text = "3...";
+                    text.text = "3";
                     break;
                 case 2:
-                    text.text = "2..";
+                    text.text = "2";
                     break;
                 case 1:
-                    text.text = "1.";
+                    text.text = "1";
                     break;
                 default:
                     text.text = "";
